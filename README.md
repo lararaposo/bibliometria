@@ -1,5 +1,4 @@
-# bibliometria
-
+# Código para compilar bases da Scopus e Web of Science no R para Bibliometria usando Bibliometrix
 [![DOI](https://zenodo.org/badge/1335457929.svg)](https://doi.org/10.5281/zenodo.21959591)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R](https://img.shields.io/badge/R-%E2%89%A5%204.1-blue.svg)](https://www.r-project.org/)
