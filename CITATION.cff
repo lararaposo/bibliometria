@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "Se você usar estes scripts em um trabalho acadêmico, por favor cite conforme abaixo."
+type: software
+title: "bibliometria: scripts em R para análise bibliométrica com bibliometrix"
+abstract: >-
+  Scripts em R para compilação, deduplicação e consolidação de exportações
+  da Web of Science e da Scopus em um corpus único para análise bibliométrica
+  com o pacote bibliometrix. A deduplicação agrupa registros por componentes
+  conexos sobre DOI e título+ano, mantém o registro mais completo em
+  referências citadas e recupera campos vazios a partir dos duplicados antes
+  do descarte. Gera resumo pronto para o fluxograma PRISMA e diagnóstico de
+  completude dos metadados.
+authors:
+  - family-names: Raposo
+    given-names: Larissa
+    affiliation: "ESPM"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # preencher
+version: "v1"
+date-released: "2026-08-15"
+doi: 10.5281/zenodo.21959591
+license: MIT
+repository-code: "https://github.com/lararaposo/bibliometria"
+url: "https://github.com/lararaposo/bibliometria"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21959591
+    description: "DOI de conceito — resolve sempre para a versão mais recente"
+  - type: doi
+    value: 10.5281/zenodo.21959592
+    description: "DOI da versão v1"
+keywords:
+  - bibliometria
+  - bibliometrics
+  - bibliometrix
+  - biblioshiny
+  - Web of Science
+  - Scopus
+  - deduplicação
+  - PRISMA
+  - revisão sistemática
+  - R
+languages:
+  - por
+references:
+  - type: software
+    title: "bibliometrix: An R-tool for comprehensive science mapping analysis"
+    authors:
+      - family-names: Aria
+        given-names: Massimo
+      - family-names: Cuccurullo
+        given-names: Corrado
+    year: 2017
+    doi: 10.1016/j.joi.2017.08.007
