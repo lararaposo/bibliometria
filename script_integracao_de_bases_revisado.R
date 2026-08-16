@@ -16,10 +16,10 @@ library(bibliometrix)
 # PARÂMETROS DO USUÁRIO
 # ============================================================================
 
-# [5] Filtro por tipo de documento. Mantenha FALSE para preservar o corpus
-#     completo. Se TRUE, mantém apenas os tipos que casam com TIPOS_MANTIDOS
-#     (editoriais, resenhas de livro, errata e correções costumam não ter
-#     author keywords e inflam o % de dados ausentes).
+# Filtro por tipo de documento. Mantenha FALSE para preservar o corpus
+# completo. Se TRUE, mantém apenas os tipos que casam com TIPOS_MANTIDOS
+# (editoriais, resenhas de livro, errata e correções costumam não ter
+# author keywords e informa o % de dados ausentes).
 FILTRAR_TIPOS  <- FALSE
 TIPOS_MANTIDOS <- "^(ARTICLE|REVIEW|SHORT SURVEY|CONFERENCE PAPER)"
 
@@ -422,6 +422,7 @@ remover_undefined <- function(celula) {
 # O script chegou ao fim e os arquivos estão na pasta. Boa sorte na análise.
 # Esse código foi desenvolvido pela Prof. Dra. Larissa Raposo - lararaposo@gmail.com para fins acadêmicos e de uso pessoal.
 # Fique à vontade para evoluí-lo!
+# Para citar o uso do script: Raposo, L. (2026). Bibliometria: scripts em R para análise bibliométrica com bibliometrix (Versão 1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21959591
 
 # Agora siga com o Biblioshiny para as suas análises.
 
