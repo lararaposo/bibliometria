@@ -1,6 +1,7 @@
 # SCRIPT DE COMPILAÇÃO DE BASES EM ARQUIVOS .rds E .csv
 
-# garanta que tenha instalado o rstudioapi e o bibliometrix
+# garanta que tenha instalado "bibliometrix", "writexl", "ggplot2", "htmlwidgets",
+# "dplyr", "tidyr", "ineq"
 
 options(repos = c(CRAN = "https://cloud.r-project.org"))
 pacotes <- c("bibliometrix", "writexl", "ggplot2", "htmlwidgets",
@@ -124,16 +125,15 @@ normalizar_titulo <- function(x) {
   trimws(gsub("[[:space:]]+", " ", x))
 }
 
-# [3] "NA" e "none" literais (produzidos pelo convert2df) também são vazio
+# "NA" e "none" literais (produzidos pelo convert2df) também são vazio
 celula_vazia <- function(v) {
   v <- trimws(as.character(v))
   is.na(v) | !nzchar(v) | v %in% c("NA", "none", "NA,0000,NA")
 }
 
-# [2] Componentes conexos (union-find) sobre uma lista de chaves por registro.
-#     Torna a deduplicação transitiva: se A=B por DOI e B=C por título/ano,
-#     A, B e C caem no mesmo grupo. A versão em duas passadas independentes
-#     não fechava esses encadeamentos.
+# Componentes conexos (union-find) sobre uma lista de chaves por registro.
+# Torna a deduplicação transitiva: se A=B por DOI e B=C por título/ano,
+# A, B e C caem no mesmo grupo. 
 agrupar_por_chaves <- function(lista_chaves) {
   n <- length(lista_chaves)
   if (n == 0L) return(integer(0))
@@ -262,7 +262,7 @@ unir_bases_priorizando_referencias <- function(WOS, SCOPUS) {
   )
   todos$.ordem <- todos$.n_ref <- todos$.n_campos <- NULL
 
-  # [4] Normaliza DE/ID ANTES do mergeDbSources, que constrói KW_Merged
+  # Normaliza DE/ID ANTES do mergeDbSources, que constrói KW_Merged
   for (kw in intersect(c("DE", "ID"), names(todos))) {
     v <- trimws(as.character(todos[[kw]]))
     v[is.na(v) | v %in% c("NA", "none")] <- ""
@@ -305,9 +305,9 @@ imprimir_resumo_prisma <- function(base_final) {
   invisible(d)
 }
 
-# [6] Completude dos metadados + composição por tipo de documento.
-#     Serve para saber se um % alto de keywords ausentes vem do corpus
-#     (editoriais, resenhas, errata) ou de falha na compilação.
+# Completude dos metadados + composição por tipo de documento.
+# Serve para saber se um % alto de keywords ausentes vem do corpus
+# (editoriais, resenhas, errata) ou de falha na compilação.
 imprimir_diagnostico_completude <- function(M) {
   titulo_bloco("COMPLETUDE DOS METADADOS (missingData)")
   res <- try(missingData(M), silent = TRUE)
@@ -351,9 +351,6 @@ remover_undefined <- function(celula) {
   pasta_brutos <- escolher_pasta(
     "Selecione a pasta com os arquivos brutos (Scopus .csv e WoS .txt)")
 
-  # [1] Arquivos gerados por execuções anteriores deste script NÃO podem
-  #     voltar como insumo. Sem esse setdiff, na segunda rodada o final.csv
-  #     era lido como se fosse um export Scopus.
   gerados <- file.path(pasta_brutos, c("final.csv", "final.txt"))
 
   arquivos_scopus <- setdiff(
@@ -419,11 +416,11 @@ remover_undefined <- function(celula) {
   imprimir_diagnostico_completude(FINAL)
 
 
-# O script chegou ao fim e os arquivos estão na pasta. Boa sorte na análise.
-# Esse código foi desenvolvido pela Prof. Dra. Larissa Raposo - lararaposo@gmail.com para fins acadêmicos e de uso pessoal.
+# O script chegou ao fim e os arquivos estão na pasta. 
+# Esse código foi desenvolvido pela Profa. Dra. Larissa Raposo - lararaposo@gmail.com para fins acadêmicos e de uso pessoal.
 # Fique à vontade para evoluí-lo!
 # Para citar o uso do script: Raposo, L. (2026). Bibliometria: scripts em R para análise bibliométrica com bibliometrix (Versão 1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.21959591
 
-# Agora siga com o Biblioshiny para as suas análises.
+# Agora, siga com o Biblioshiny para as suas análises.Boa sorte.
 
 biblioshiny()
